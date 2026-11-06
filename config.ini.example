@@ -1,0 +1,6 @@
+[database]
+host = localhost
+port = 5432
+name = shoes_shop
+user = shoe_user
+password = change_me
