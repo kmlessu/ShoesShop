@@ -96,7 +96,7 @@ class MainWindow:
         self.orders_storage = db.get_all_orders()
 
         self.stacked_widget = QStackedWidget()
-        self.stacked_widget.setWindowTitle("Магазин обуви")
+        self.stacked_widget.setWindowTitle("Магазин обуви — ShoesShop")
         self.stacked_widget.setMinimumSize(1200, 800)
 
         self.login_page = LoginPage()
