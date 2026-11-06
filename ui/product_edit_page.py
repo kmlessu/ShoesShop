@@ -431,7 +431,7 @@ class ProductEditPage(QWidget):
     def _save(self):
         # Проверка обязательных полей
         if not self.name_field.text().strip():
-            QMessageBox.warning(self, "Ошибка", "Введите наименование товара")
+            QMessageBox.warning(self, "Ошибка", "Введите наименование товара: поле не может быть пустым")
             self.name_field.setFocus()
             return
 
