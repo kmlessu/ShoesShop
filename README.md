@@ -51,6 +51,14 @@
 
 Приложение на хосте подключается к `localhost:5434`, а сервис `db-check` внутри Compose — к `db:5432`.
 
+## Постоянное хранение и сети
+
+- Данные PostgreSQL хранятся в именованном томе `db_data`, поэтому они сохраняются при пересоздании контейнера (`docker compose up -d --force-recreate db`).
+- Резервная копия: `docker compose exec db pg_dump -U shoe_user -d shoes_shop -f /tmp/backup.sql`, затем `docker compose cp db:/tmp/backup.sql ./backups/backup.sql`. Каталог `backups/` исключён из Git.
+- Восстановление: `docker compose cp ./backups/backup.sql db:/tmp/restore.sql`, затем `docker compose exec db psql -v ON_ERROR_STOP=1 -U shoe_user -d shoes_shop -f /tmp/restore.sql`.
+- Сервисы `db` и `db-check` работают в сети `shoe-backend`. Внутри Compose адрес базы `db:5432`, для приложения на хосте `localhost:5434` (порт опубликован только на 127.0.0.1).
+- Внимание: `docker compose down -v` удаляет том и все данные. Не выполнять без резервной копии.
+
 ## Автор
 
 Балаян Камилла, группа ПКС-44
