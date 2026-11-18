@@ -1,3 +1,10 @@
+import os
+import sys
+
+# В PyInstaller-сборке ресурсы лежат в каталоге _MEIPASS
+if getattr(sys, "frozen", False):
+    os.chdir(sys._MEIPASS)
+
 import sys
 import os
 from PySide6.QtWidgets import QApplication, QStackedWidget, QMessageBox

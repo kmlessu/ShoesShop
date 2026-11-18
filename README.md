@@ -58,7 +58,9 @@
 - Восстановление: `docker compose cp ./backups/backup.sql db:/tmp/restore.sql`, затем `docker compose exec db psql -v ON_ERROR_STOP=1 -U shoe_user -d shoes_shop -f /tmp/restore.sql`.
 - Сервисы `db` и `db-check` работают в сети `shoe-backend`. Внутри Compose адрес базы `db:5432`, для приложения на хосте `localhost:5434` (порт опубликован только на 127.0.0.1).
 - Внимание: `docker compose down -v` удаляет том и все данные. Не выполнять без резервной копии.
-
+- 
+## Сборка приложения (PyInstaller)
+Инструкция по сборке и запуску в `INSTALL.md`. Конфигурация сборки сохранена в `ShoeStore.spec`. Каталоги `build/` и `dist/` в репозиторий не добавляются.
 ## Автор
 
 Балаян Камилла, группа ПКС-44

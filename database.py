@@ -4,6 +4,7 @@ from typing import List, Dict, Any, Optional, Tuple
 import sys
 import os
 import configparser
+import sys
 
 
 class Database:
@@ -14,7 +15,8 @@ class Database:
     def connect(self):
         try:
             config = configparser.ConfigParser()
-            config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.ini")
+            base_dir = os.path.dirname(sys.executable) if getattr(sys, "frozen", False) else os.path.dirname(os.path.abspath(__file__))
+            config_path = os.path.join(base_dir, "config.ini")
             config.read(config_path, encoding="utf-8")
             db = config["database"]
             self.connection = psycopg2.connect(
